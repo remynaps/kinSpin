@@ -59,11 +59,11 @@ double kinematics::getAbsolute(double val)
     return val;
 }
 
-std::array<double, 3> kinematics::calculate(int x1, int y1, int z1)
+std::array<double, 3> kinematics::calculate(int x, int y, int z)
 {
-    x = x1;
-    y = y1;
-    z = z1;
+    this->x = x;
+    this->y = y;
+    this->z = z;
     std::array<double, 3> values = {0,0,0};
     int alpha = calcAlpha1() + calcAlpha2();
     int beta = calcBeta();

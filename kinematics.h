@@ -19,7 +19,7 @@ public:
     double calcGamma();
     double calcZoffset();
     double getAbsolute(double val);
-    std::array<double, 3> calculate(int x, int y, int z);
+    std::array<double, 3> calculate(int x1, int y1, int z1);
     kinematics();
     ~kinematics();
 
