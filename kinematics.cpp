@@ -40,7 +40,7 @@ double kinematics::calcBeta()
 
 double kinematics::calcGamma()
 {
-    return atan(x/y);
+    return atan(y/x);
 }
 
 double kinematics::calcZoffset()
@@ -59,18 +59,18 @@ double kinematics::getAbsolute(double val)
     return val;
 }
 
-std::array<double, 3> kinematics::calculate(int x, int y, int z)
+std::array<double, 3> kinematics::calculate(int y, int x, int z)
 {
     this->x = x;
     this->y = y;
     this->z = z;
     std::array<double, 3> values = {0,0,0};
-    int alpha = calcAlpha1() + calcAlpha2();
-    int beta = calcBeta();
-    int gamma = calcGamma();
-    values[0] = (gamma + 150) * 3.41;
-    values[1] = (alpha + 180) * 3.41;
-    values[2] = (beta + 180) * 3.41;
+    double alpha = calcAlpha1() + calcAlpha2();
+    double beta = calcBeta();
+    double gamma = calcGamma();
+    values[0] = (alpha) * (180/3.14);
+    values[1] = (beta) * (180/3.14);
+    values[2] = (gamma) * (180/3.14);
 
     std::cout << values[0] << std::endl;
     std::cout << values[1] << std::endl;

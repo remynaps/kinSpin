@@ -19,17 +19,17 @@ public:
     double calcGamma();
     double calcZoffset();
     double getAbsolute(double val);
-    std::array<double, 3> calculate(int x1, int y1, int z1);
+    std::array<double, 3> calculate(int y, int x, int z);
     kinematics();
     ~kinematics();
 
 private:
-    int coxa = 4.5;
+    int coxa = 5;
     int femur = 10;
-    int tibia = 15.5;
-    int x;
-    int y;
-    int z;
-    int standardHeight = 7;
+    int tibia = 20;
+    double x;
+    double y;
+    double z;
+    int standardHeight = 10;
 };
 #endif //KINEMATICSTEST_KINEMATICS_H

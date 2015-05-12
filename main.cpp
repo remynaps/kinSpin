@@ -4,8 +4,7 @@
 using namespace std;
 
 int main() {
-    cout << "Hello, World!" << endl;
     kinematics kinematics;
-    kinematics.calculate(0,6,16);
+    kinematics.calculate(10,15,4);
     return 0;
 }
