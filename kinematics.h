@@ -23,6 +23,7 @@ private:
     double y;
     double z;
     double standardHeight;
+
     double calcL();
     double calcL1();
     double calcAlpha1();
