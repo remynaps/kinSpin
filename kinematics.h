@@ -12,7 +12,7 @@
 class kinematics {
 public:
     std::array<double, 3> calculate(double y, double x, double z);
-    kinematics(double coxa, double femur, double tibia);
+    kinematics(double coxa, double femur, double tibia, double standardHeight);
     ~kinematics();
 
 private:
@@ -22,7 +22,7 @@ private:
     double x;
     double y;
     double z;
-    double standardHeight = 10;
+    double standardHeight;
     double calcL();
     double calcL1();
     double calcAlpha1();

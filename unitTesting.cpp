@@ -7,7 +7,7 @@
 
 bool unitTesting::testCalculate(double y, double x, double z, std::array<int, 3> expectedResults)
 {
-    kinematics kinematics(5,10,20);
+    kinematics kinematics(5,10,20,10);
     std::array<double, 3> kinematicsResults = kinematics.calculate(y, x ,z);
 
     //Parse results to int because spreadsheet/program have different values after comma

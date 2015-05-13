@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-    //kinematics kinematics(5,10,20);
+    //kinematics kinematics(5,10,20,10);
     unitTesting unitTesting;
     bool test = unitTesting.testCalculate(10,15,4,{174,42,33});
     std::cout << test << std::endl;

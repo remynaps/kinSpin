@@ -5,11 +5,12 @@
 #include "kinematics.h"
 #include <iostream>
 
-kinematics::kinematics(double coxa, double femur, double tibia)
+kinematics::kinematics(double coxa, double femur, double tibia, double standardHeight)
 {
     this->coxa = coxa;
     this->femur = femur;
     this->tibia = tibia;
+    this->standardHeight = standardHeight;
 }
 
 kinematics::~kinematics()
