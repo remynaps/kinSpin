@@ -11,6 +11,18 @@
 
 class kinematics {
 public:
+    std::array<double, 3> calculate(double y, double x, double z);
+    kinematics(double coxa, double femur, double tibia);
+    ~kinematics();
+
+private:
+    double coxa;
+    double femur;
+    double tibia;
+    double x;
+    double y;
+    double z;
+    double standardHeight = 10;
     double calcL();
     double calcL1();
     double calcAlpha1();
@@ -19,17 +31,5 @@ public:
     double calcGamma();
     double calcZoffset();
     double getAbsolute(double val);
-    std::array<double, 3> calculate(int y, int x, int z);
-    kinematics();
-    ~kinematics();
-
-private:
-    int coxa = 5;
-    int femur = 10;
-    int tibia = 20;
-    double x;
-    double y;
-    double z;
-    int standardHeight = 10;
 };
 #endif //KINEMATICSTEST_KINEMATICS_H
