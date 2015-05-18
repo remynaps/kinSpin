@@ -15,6 +15,7 @@ kinematics::kinematics(double coxa, double femur, double tibia, double standardH
 
 kinematics::~kinematics()
 {
+    delete(values);
 }
 
 //L is the Length between tip of the Tibia to the servo that connects Coxa+Femur
@@ -78,7 +79,6 @@ std::array<double, 3> kinematics::calculate(double y, double x, double z)
     this->x = x;
     this->y = y;
     this->z = z;
-    std::array<double, 3> values = {0,0,0};
 
     //Calculate the angles
     double alpha = calcAlpha1() + calcAlpha2();
@@ -96,3 +96,4 @@ std::array<double, 3> kinematics::calculate(double y, double x, double z)
 
     return values;
 }
+
