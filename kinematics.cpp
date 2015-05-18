@@ -15,7 +15,7 @@ kinematics::kinematics(double coxa, double femur, double tibia, double standardH
 
 kinematics::~kinematics()
 {
-    delete(values);
+    delete(&values);
 }
 
 //L is the Length between tip of the Tibia to the servo that connects Coxa+Femur
