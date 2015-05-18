@@ -32,6 +32,5 @@ private:
     double calcGamma();
     double calcZoffset();
     double getAbsolute(double val);
-    std::array<double, 3> values;
 };
 #endif //KINEMATICSTEST_KINEMATICS_H
