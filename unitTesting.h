@@ -7,10 +7,11 @@
 
 
 #include <array>
+#include "kinematics.h"
 
 class unitTesting {
 public:
-    bool testCalculate(double y, double x, double z, std::array<int, 3> expectedResults);
+    bool testCalculate(double y, double x, double z, kinematics::servoAngles expectedResults);
 private:
 
 

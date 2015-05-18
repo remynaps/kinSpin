@@ -74,26 +74,25 @@ double kinematics::getAbsolute(double val)
 }
 
 //Function to calculate where the servo's need to move to get desired y,x and z values
-std::array<double, 3> kinematics::calculate(double y, double x, double z)
+servoAngles kinematics::calculate(double y, double x, double z)
 {
+    servoAngles angles;
     this->x = x;
     this->y = y;
     this->z = z;
-    std::array<double, 3> values = {0,0,0};
-
     //Calculate the angles
     double alpha = calcAlpha1() + calcAlpha2();
     double beta = calcBeta();
     double gamma = calcGamma();
 
     //Convert to degrees
-    values[0] = (alpha) * (180/3.14);
-    values[1] = (beta) * (180/3.14);
-    values[2] = (gamma) * (180/3.14);
+    angles.alpha = (alpha) * (180/3.14);
+    angles.beta = (beta) * (180/3.14);
+    angles.gamma = (gamma) * (180/3.14);
 
-    std::cout << values[0] << std::endl;
-    std::cout << values[1] << std::endl;
-    std::cout << values[2] << std::endl;
+    std::cout << angles.alpha << std::endl;
+    std::cout << angles.beta << std::endl;
+    std::cout << angles.gamma << std::endl;
 
-    return values;
+    return angles;
 }
