@@ -17,7 +17,7 @@ public:
         static double beta;
         static double gamma;
     };
-    servoAngles calculate(double y, double x, double z);
+    double * calculate(double y, double x, double z);
 
     kinematics(double coxa, double femur, double tibia, double standardHeight);
     ~kinematics();
