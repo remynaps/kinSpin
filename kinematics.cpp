@@ -59,9 +59,11 @@ double kinematics::calcGamma()
 //This value need to be absolute!
 double kinematics::calcZoffset()
 {
-    int zoffset1 = standardHeight - z;
-    zoffset1 = getAbsolute(zoffset1);
-    return zoffset1;
+    //int zoffset1 = standardHeight - z;
+    //zoffset1 = getAbsolute(zoffset1);
+    z=getAbsolute(z);
+    //return zoffset1;
+    return z;
 }
 
 //Function to return the absolute of a double
@@ -87,9 +89,12 @@ std::string kinematics::calculate(double y, double x, double z)
     double results[3];
 
     //Convert to degrees
-    results[0] = (alpha) * (180/3.14);
-    results[1] = (beta) * (180/3.14);
-    results[2] = (gamma) * (180/3.14);
+    results[0] = ((alpha) * (180/3.141592653589793) - 43) * 3.41;
+    results[1] = ((beta) * (180/3.141592653589793) + 30.5) * 3.41;
+    results[2] = ((gamma) * (180/3.141592653589793) + 150) * 3.41;
+
+
+
 
     std::ostringstream result0;
     std::ostringstream result1;
@@ -100,6 +105,9 @@ std::string kinematics::calculate(double y, double x, double z)
     result2 << (int)results[2];
     std::string result = formatString(result0.str()) + formatString(result1.str()) + formatString(result2.str());
 
+    std::cout<< (alpha) * (180/3.141592653589793)<<std::endl;
+    std::cout<< (beta) * (180/3.141592653589793)<<std::endl;
+    std::cout<< (gamma) * (180/3.141592653589793)<<std::endl;
     std::cout << results[0] << std::endl;
     std::cout << results[1] << std::endl;
     std::cout << results[2] << std::endl;
