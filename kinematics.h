@@ -18,7 +18,7 @@ public:
         static double gamma;
     };
     std::string calculate(double y, double x, double z);
-
+    std::string formatString(std::string text);
     kinematics(double coxa, double femur, double tibia, double standardHeight);
     ~kinematics();
 
