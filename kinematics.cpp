@@ -4,6 +4,7 @@
 
 #include "kinematics.h"
 #include <iostream>
+#include <sstream>
 
 kinematics::kinematics(double coxa, double femur, double tibia, double standardHeight)
 {
@@ -74,7 +75,7 @@ double kinematics::getAbsolute(double val)
 }
 
 //Function to calculate where the servo's need to move to get desired y,x and z values
-double * kinematics::calculate(double y, double x, double z)
+std::string kinematics::calculate(double y, double x, double z)
 {
     servoAngles angles;
     this->x = x;
@@ -86,14 +87,21 @@ double * kinematics::calculate(double y, double x, double z)
     double gamma = calcGamma();
     double results[3];
 
+
+
     //Convert to degrees
     results[0] = (alpha) * (180/3.14);
     results[1] = (beta) * (180/3.14);
     results[2] = (gamma) * (180/3.14);
 
+    std::ostringstream strs;
+    strs << (int)results[0] << (int)results[1] << (int)results[2];
+    std::string result = strs.str();
+
     std::cout << results[0] << std::endl;
     std::cout << results[1] << std::endl;
     std::cout << results[2] << std::endl;
+    std::cout<<result<<std::endl;
 
-    return results;
+    return result;
 }
