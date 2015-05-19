@@ -88,21 +88,35 @@ std::string kinematics::calculate(double y, double x, double z)
     double gamma = calcGamma();
     double results[3];
 
-    //Convert to degrees
+    //Convert to degrees and then to servo positions
     results[0] = ((alpha) * (180/3.141592653589793) - 43) * 3.41;
     results[1] = ((beta) * (180/3.141592653589793) + 30.5) * 3.41;
     results[2] = ((gamma) * (180/3.141592653589793) + 150) * 3.41;
 
+    //Check if the servo positions are correct
+    if(results[0] < 300 || results[0] > 724)
+    {
+        return "Error";
+    }
+    if(results[1] < 512 || results[1] > 700)
+    {
+        return "Error";
+    }
+    if(results[2] < 400 || results[2] > 550)
+    {
+        return "Error";
+    }
 
-
-
+    //Create ostringstream objects to parse to string
     std::ostringstream result0;
     std::ostringstream result1;
     std::ostringstream result2;
 
+    //Convert to int
     result0 << (int)results[0];
     result1 << (int)results[1];
     result2 << (int)results[2];
+    //Create our communication protocol 
     std::string result = formatString(result0.str()) + formatString(result1.str()) + formatString(result2.str());
 
     std::cout<< (alpha) * (180/3.141592653589793)<<std::endl;
