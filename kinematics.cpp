@@ -7,12 +7,11 @@
 #include <sstream>
 #include <cmath>
 
-kinematics::kinematics(double coxa, double femur, double tibia, double standardHeight)
+kinematics::kinematics(double coxa, double femur, double tibia)
 {
     this->coxa = coxa;
     this->femur = femur;
     this->tibia = tibia;
-    this->standardHeight = standardHeight;
 }
 
 kinematics::~kinematics()
@@ -59,9 +58,6 @@ double kinematics::calcGamma()
 //This value need to be absolute!
 double kinematics::calcZoffset()
 {
-    //int zoffset1 = standardHeight - z;
-    //zoffset1 = getAbsolute(zoffset1);
-    //return zoffset1;
     z=getAbsolute(z);
     return z;
 }

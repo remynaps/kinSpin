@@ -11,7 +11,7 @@
 class kinematics {
 public:
     std::string calculate(double y, double x, double z);
-    kinematics(double coxa, double femur, double tibia, double standardHeight);
+    kinematics(double coxa, double femur, double tibia);
     ~kinematics();
 
 private:
@@ -21,7 +21,6 @@ private:
     double x;
     double y;
     double z;
-    double standardHeight;
 
     std::string formatString(std::string text);
     double calcL();
