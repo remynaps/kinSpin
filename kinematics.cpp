@@ -5,6 +5,7 @@
 #include "kinematics.h"
 #include <iostream>
 #include <sstream>
+#include <cmath>
 
 kinematics::kinematics(double coxa, double femur, double tibia, double standardHeight)
 {
@@ -16,7 +17,6 @@ kinematics::kinematics(double coxa, double femur, double tibia, double standardH
 
 kinematics::~kinematics()
 {
-
 }
 
 //L is the Length between tip of the Tibia to the servo that connects Coxa+Femur
@@ -61,8 +61,8 @@ double kinematics::calcZoffset()
 {
     //int zoffset1 = standardHeight - z;
     //zoffset1 = getAbsolute(zoffset1);
-    z=getAbsolute(z);
     //return zoffset1;
+    z=getAbsolute(z);
     return z;
 }
 
@@ -82,30 +82,18 @@ std::string kinematics::calculate(double y, double x, double z)
     this->x = x;
     this->y = y;
     this->z = z;
+    double results[3];
+
     //Calculate the angles
     double alpha = calcAlpha1() + calcAlpha2();
     double beta = calcBeta();
     double gamma = calcGamma();
-    double results[3];
 
     //Convert to degrees and then to servo positions
     results[0] = ((alpha) * (180/3.141592653589793) - 43) * 3.41;
     results[1] = ((beta) * (180/3.141592653589793) + 30.5) * 3.41;
     results[2] = ((gamma) * (180/3.141592653589793) + 150) * 3.41;
 
-    //Check if the servo positions are correct
-    if(results[0] < 300 || results[0] > 724)
-    {
-        return "Error";
-    }
-    if(results[1] < 512 || results[1] > 700)
-    {
-        return "Error";
-    }
-    if(results[2] < 400 || results[2] > 550)
-    {
-        return "Error";
-    }
 
     //Create ostringstream objects to parse to string
     std::ostringstream result0;
@@ -113,23 +101,24 @@ std::string kinematics::calculate(double y, double x, double z)
     std::ostringstream result2;
 
     //Convert to int
-    result0 << (int)results[0];
-    result1 << (int)results[1];
-    result2 << (int)results[2];
-    //Create our communication protocol 
-    std::string result = formatString(result0.str()) + formatString(result1.str()) + formatString(result2.str());
+    result0 << std::round(results[0]);
+    result1 << std::round(results[1]);
+    result2 << std::round(results[2]);
 
+    //Print the results in degrees and servo angles
     std::cout<< (alpha) * (180/3.141592653589793)<<std::endl;
     std::cout<< (beta) * (180/3.141592653589793)<<std::endl;
     std::cout<< (gamma) * (180/3.141592653589793)<<std::endl;
     std::cout << results[0] << std::endl;
     std::cout << results[1] << std::endl;
     std::cout << results[2] << std::endl;
+
+    //Create our communication protocol
+    std::string result = formatString(result0.str()) + formatString(result1.str()) + formatString(result2.str());
     std::cout<<result<<std::endl;
 
     return result;
 }
-
 std::string kinematics::formatString(std::string text)
 {
     while(text.length() != 4)

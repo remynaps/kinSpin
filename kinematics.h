@@ -8,17 +8,9 @@
 #ifndef KINEMATICSTEST_KINEMATICS_H
 #define KINEMATICSTEST_KINEMATICS_H
 
-
 class kinematics {
 public:
-    struct servoAngles
-    {
-        static double alpha;
-        static double beta;
-        static double gamma;
-    };
     std::string calculate(double y, double x, double z);
-    std::string formatString(std::string text);
     kinematics(double coxa, double femur, double tibia, double standardHeight);
     ~kinematics();
 
@@ -31,6 +23,7 @@ private:
     double z;
     double standardHeight;
 
+    std::string formatString(std::string text);
     double calcL();
     double calcL1();
     double calcAlpha1();
@@ -40,4 +33,5 @@ private:
     double calcZoffset();
     double getAbsolute(double val);
 };
+
 #endif //KINEMATICSTEST_KINEMATICS_H
