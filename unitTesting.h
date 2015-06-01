@@ -5,13 +5,13 @@
 #ifndef KINSPIN_UNITTESTING_H
 #define KINSPIN_UNITTESTING_H
 
-#include <array>
+#include <vector>
 #include "kinematics.h"
 #include <string>
 
 class unitTesting {
 public:
-    bool testCalculate(double y, double x, double z, std::string expectedResults);
+    bool testCalculate(double y, double x, double z, std::vector<double> expectedResults);
 private:
 
 };

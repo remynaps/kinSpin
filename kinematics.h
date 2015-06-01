@@ -3,15 +3,16 @@
 //
 #pragma once
 
-#include <array>
+#include <vector>
 #include "math.h"
+
 #ifndef KINEMATICSTEST_KINEMATICS_H
 #define KINEMATICSTEST_KINEMATICS_H
 
 class kinematics {
 public:
-    std::string calculate(double y, double x, double z);
-    kinematics(double coxa, double femur, double tibia);
+    std::vector<double> calculate(double y, double x, double z);
+    kinematics(double coxa, double femur, double tibia, double standardHeight);
     ~kinematics();
 
 private:
@@ -21,8 +22,8 @@ private:
     double x;
     double y;
     double z;
+    double standardHeight;
 
-    std::string formatString(std::string text);
     double calcL();
     double calcL1();
     double calcAlpha1();

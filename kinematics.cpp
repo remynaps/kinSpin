@@ -7,11 +7,12 @@
 #include <sstream>
 #include <cmath>
 
-kinematics::kinematics(double coxa, double femur, double tibia)
+kinematics::kinematics(double coxa, double femur, double tibia, double standardHeight)
 {
     this->coxa = coxa;
     this->femur = femur;
     this->tibia = tibia;
+    this->standardHeight = standardHeight;
 }
 
 kinematics::~kinematics()
@@ -58,8 +59,10 @@ double kinematics::calcGamma()
 //This value need to be absolute!
 double kinematics::calcZoffset()
 {
-    z=getAbsolute(z);
-    return z;
+    int zoffset1 = standardHeight - z;
+    zoffset1 = getAbsolute(zoffset1);
+    //z=getAbsolute(z);
+    return zoffset1;
 }
 
 //Function to return the absolute of a double
@@ -73,12 +76,12 @@ double kinematics::getAbsolute(double val)
 }
 
 //Function to calculate where the servo's need to move to get desired y,x and z values
-std::string kinematics::calculate(double y, double x, double z)
+std::vector<double> kinematics::calculate(double y, double x, double z)
 {
     this->x = x;
     this->y = y;
     this->z = z;
-    double results[3];
+    std::vector<double> results;
 
     //Calculate the angles
     double alpha = calcAlpha1() + calcAlpha2();
@@ -86,40 +89,19 @@ std::string kinematics::calculate(double y, double x, double z)
     double gamma = calcGamma();
 
     //Convert to degrees and then to servo positions
-    results[0] = ((alpha) * (180/3.141592653589793) - 43) * 3.41;
-    results[1] = ((beta) * (180/3.141592653589793) + 30.5) * 3.41;
-    results[2] = ((gamma) * (180/3.141592653589793) + 150) * 3.41;
-
-
-    //Create ostringstream objects to parse to string
-    std::ostringstream result0;
-    std::ostringstream result1;
-    std::ostringstream result2;
-
-    //Convert to int
-    result0 << std::round(results[0]);
-    result1 << std::round(results[1]);
-    result2 << std::round(results[2]);
+    results.push_back(std::round(((alpha) * (180/3.141592653589793) - 43) * 3.41));
+    results.push_back(std::round(((beta) * (180/3.141592653589793) + 30.5) * 3.41));
+    results.push_back(std::round(((gamma) * (180/3.141592653589793) + 150) * 3.41));
 
     //Print the results in degrees and servo angles
-    std::cout<< (alpha) * (180/3.141592653589793)<<std::endl;
-    std::cout<< (beta) * (180/3.141592653589793)<<std::endl;
-    std::cout<< (gamma) * (180/3.141592653589793)<<std::endl;
+   // std::cout<< (alpha) * (180/3.141592653589793)<<std::endl;
+   // std::cout<< (beta) * (180/3.141592653589793)<<std::endl;
+   // std::cout<< (gamma) * (180/3.141592653589793)<<std::endl;
     std::cout << results[0] << std::endl;
     std::cout << results[1] << std::endl;
     std::cout << results[2] << std::endl;
 
-    //Create our communication protocol
-    std::string result = formatString(result0.str()) + formatString(result1.str()) + formatString(result2.str());
-    std::cout<<result<<std::endl;
+    //std::cout<<result<<std::endl;
 
-    return result;
-}
-std::string kinematics::formatString(std::string text)
-{
-    while(text.length() != 4)
-    {
-        text = "0" + text;
-    }
-    return text;
+    return results;
 }
